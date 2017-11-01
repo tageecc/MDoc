@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styles from './style.css'
 import util from '../../assets/js/util';
-import {Avatar} from 'material-ui';
 import List, {ListItem, ListItemIcon, ListItemText, ListSubheader} from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 import InboxIcon from 'material-ui-icons/MoveToInbox';
