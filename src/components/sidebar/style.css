@@ -1,0 +1,19 @@
+.container {
+    height: 100%;
+}
+.list{
+    height:100%;
+    overflow: scroll;
+}
+
+.icon{
+    color:rgba(0, 0, 0, 0.54);
+    margin-right: -10px;
+    transition:.25s rotate;
+}
+.icon2{
+    transform: rotate(90deg);
+}
+.arrow{
+    margin-right: 10px;
+}

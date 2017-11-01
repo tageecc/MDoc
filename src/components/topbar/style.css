@@ -1,0 +1,15 @@
+.container {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    height: 55px;
+    position: fixed;
+    top:0;
+}
+.title{
+    color: #fff;
+    font-size: 22px;
+    margin-left:15px;
+}
+.loginBtn{
+    margin-left:auto;
+}
