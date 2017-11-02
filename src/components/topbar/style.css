@@ -1,15 +1,19 @@
 .container {
     -webkit-user-select: none;
     -webkit-app-region: drag;
-    height: 55px;
+    height: 66px;
     position: fixed;
     top:0;
 }
 .title{
+    font-family: 'Tangerine', serif;
     color: #fff;
-    font-size: 22px;
-    margin-left:15px;
+    font-size: 40px;
+    /*margin-left:15px;*/
 }
-.loginBtn{
+.right{
     margin-left:auto;
+}
+
+.loginBtn{
 }
