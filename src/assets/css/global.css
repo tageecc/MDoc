@@ -5,10 +5,11 @@ body{
     margin:auto;
     overflow: hidden;
 }
-:global .h100{
+:global .full-height{
     height:100%;
 }
 :global #app{
+    position: relative;
     padding-top: 66px;
     height:100%;
 }

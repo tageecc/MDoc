@@ -15,21 +15,31 @@ export default class SideBar extends Component {
         super();
         let paths = '/Users/tagee/Documents/workspace-own/mDoc';
         this.state = {
-            nodes: Immutable.fromJS(getFileList(paths, /*['.git', '.idea']*/))
+            nodes: Immutable.fromJS(getFileList(paths/*,['.git', '.idea']*/))
         };
     }
 
     handleClick = (deep) => {
-        let {nodes} = this.state;
+        let nodes = this.state.nodes.toJS(), tmp = nodes;
+
+        deep.map(d=>tmp=tmp = tmp[d]);
+
+        multiSet(tmp);
+        function multiSet(nodes, open) {
+            nodes['open'] = open === undefined ? !nodes['open'] : open;
+            if (!nodes['open'] && nodes['child']) nodes.child.map(n => multiSet(n, false));
+        }
+
         this.setState({
-            nodes: nodes.setIn([...deep, 'open'], !nodes.getIn([...deep, 'open']))
+            nodes: Immutable.fromJS(nodes)
         })
     };
 
     getChildNode(node, index, deep) {
         return (
-            <List key={index} className={styles.subList}>
-                <ListItem button disableRipple onDoubleClick={this.handleClick.bind(this, deep)} className={styles.listItem}>
+            <List key={index} className={classNames([styles.subList,styles.list])}>
+                <ListItem button disableRipple onDoubleClick={this.handleClick.bind(this, deep)}
+                          className={styles.listItem}>
                     <LeftArrow
                         onClick={this.handleClick.bind(this, deep)}
                         className={classNames([
@@ -51,8 +61,9 @@ export default class SideBar extends Component {
     }
 
     render() {
+        let {left} = this.props;
         return (
-            <div className={styles.container}>
+            <div className={styles.container} style={{width:left}}>
                 <Typography type="subheading" gutterBottom className={styles.title}>Project</Typography>
                 {this.state.nodes.toJS().map((node, index) => this.getChildNode(node, index, [index]))}
             </div>

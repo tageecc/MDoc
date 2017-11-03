@@ -10,13 +10,28 @@ import Sidebar from './components/sidebar';
 import Editor from './components/editor';
 
 class App extends React.Component {
+    state = {
+        canDrag: false,
+        left: 500
+    };
+
+    onBorderDrop({clientX: left}) {
+        if (this.state.canDrag) this.setState({left});
+    }
+
+    componentDidMount() {
+        document.getElementById('borderLeft').addEventListener('mousedown', () => this.setState({canDrag: true}));
+        document.addEventListener('mouseup', () => this.setState({canDrag: false}));
+        document.addEventListener('mousemove', this.onBorderDrop.bind(this));
+    }
 
     render() {
+        let {left} = this.state;
         return (
-            <div className="h100">
+            <div className="full-height">
                 <TopBar/>
-                <Sidebar/>
-                <Editor/>
+                <Sidebar left={left}/>
+                <Editor left={left}/>
             </div>
         )
     }

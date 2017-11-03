@@ -1,4 +1,16 @@
 .container {
     height: 100%;
-    background: #ffbd8c;
+    background: #2b2b2b;
+    width:100%;
+    position: absolute;
+    top: 0;
+    left:100px;
+}
+.border-ctl{
+    width:1px;
+    padding-right:4px;
+    height:100%;
+    background-color: #282828;
+    background-clip:content-box;
+    cursor:col-resize;
 }
