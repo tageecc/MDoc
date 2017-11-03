@@ -12,7 +12,7 @@ export default class Editor extends Component {
         files:[
             {
                 name:'123',
-                path:'/Users/tagee/Documents/workspace-own/mDoc/src/assets/css/global.css'
+                path:process.cwd()+'/src/assets/css/global.css'
             },
             {
                 name:'123',

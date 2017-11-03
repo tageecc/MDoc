@@ -6,10 +6,11 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "webpack": "webpack",
+    "win-dev": "cross-env NODE_ENV=development npm start",
     "dev": "webpack & cross-env NODE_ENV=development npm start"
   },
   "dependencies": {
+    "draft-js": "^0.10.4",
     "electron": "^1.7.9",
     "immutable": "^3.8.2",
     "material-ui": "^1.0.0-beta.19",

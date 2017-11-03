@@ -13,7 +13,7 @@ import {classNames, getFileList} from '../../assets/js/util';
 export default class SideBar extends Component {
     constructor() {
         super();
-        let paths = '/Users/tagee/Documents/workspace-own/mDoc';
+        let paths = process.cwd();
         this.state = {
             nodes: Immutable.fromJS(getFileList(paths/*,['.git', '.idea']*/))
         };
