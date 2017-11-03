@@ -4,6 +4,7 @@
     height: 66px;
     position: fixed;
     top:0;
+    background-color: #0096ef;
 }
 .title{
     font-family: 'Tangerine', serif;

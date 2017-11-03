@@ -22,9 +22,10 @@ export default class SideBar extends Component {
     handleClick = (deep) => {
         let nodes = this.state.nodes.toJS(), tmp = nodes;
 
-        deep.map(d=>tmp=tmp = tmp[d]);
+        deep.map(d => tmp = tmp = tmp[d]);
 
         multiSet(tmp);
+
         function multiSet(nodes, open) {
             nodes['open'] = open === undefined ? !nodes['open'] : open;
             if (!nodes['open'] && nodes['child']) nodes.child.map(n => multiSet(n, false));
@@ -37,7 +38,7 @@ export default class SideBar extends Component {
 
     getChildNode(node, index, deep) {
         return (
-            <List key={index} className={classNames([styles.subList,styles.list])}>
+            <List key={index} className={classNames([styles.subList, deep.length === 1 && styles.list])}>
                 <ListItem button disableRipple onDoubleClick={this.handleClick.bind(this, deep)}
                           className={styles.listItem}>
                     <LeftArrow
@@ -63,7 +64,7 @@ export default class SideBar extends Component {
     render() {
         let {left} = this.props;
         return (
-            <div className={styles.container} style={{width:left}}>
+            <div className={styles.container} style={{width: left}}>
                 <Typography type="subheading" gutterBottom className={styles.title}>Project</Typography>
                 {this.state.nodes.toJS().map((node, index) => this.getChildNode(node, index, [index]))}
             </div>
