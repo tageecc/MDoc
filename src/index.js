@@ -12,7 +12,7 @@ import Editor from './components/editor';
 class App extends React.Component {
     state = {
         canDrag: false,
-        left: 500
+        left: 200
     };
 
     onBorderDrop({clientX: left}) {
@@ -28,10 +28,12 @@ class App extends React.Component {
     render() {
         let {left} = this.state;
         return (
-            <div className="full-height">
+            <div className="g-container">
                 <TopBar/>
-                <Sidebar left={left}/>
-                <Editor left={left}/>
+                <div className="g-main">
+                    <Sidebar left={left}/>
+                    <Editor left={left}/>
+                </div>
             </div>
         )
     }

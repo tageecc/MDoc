@@ -1,3 +1,6 @@
+:root {
+    --topbar-height: 66px;
+}
 html,body{
     height:100%;
 }
@@ -5,11 +8,15 @@ body{
     margin:auto;
     overflow: hidden;
 }
-:global .full-height{
+:global .g-container{
     height:100%;
+    position: relative;
+}
+:global .g-main{
+    height: calc(100% - 66px);
+    margin-top: var(--topbar-height);
+    position: relative;
 }
 :global #app{
-    position: relative;
-    padding-top: 66px;
     height:100%;
 }
