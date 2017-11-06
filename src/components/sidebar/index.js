@@ -17,6 +17,7 @@ export default class SideBar extends Component {
         this.state = {
             nodes: Immutable.fromJS(getFileList(paths/*,['.git', '.idea']*/))
         };
+        console.log(this.state.nodes.toJS());
     }
 
     handleClick = (deep) => {

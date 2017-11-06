@@ -32,7 +32,6 @@ export default class Editor extends Component {
         this.setState({value});
     };
     getFileContent(path){
-        console.log(fs.readFileSync(path,'utf-8'));
         return fs.readFileSync(path,'utf-8');
     }
     render() {

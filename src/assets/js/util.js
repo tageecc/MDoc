@@ -1,4 +1,5 @@
 import fs from 'fs';
+import {resolve} from 'path';
 
 const FILTER_DIR = ['.git', 'node_modules', '.idea'];
 
@@ -21,18 +22,21 @@ export const getFileList = (path, filterDir = FILTER_DIR) => {
 
     function readFile(path, nodes, tmp) {
         let files = fs.readdirSync(path);
+        // if(files.length>100) return true;
+
         files = [].concat(files.filter(f => fs.statSync(path + '/' + f).isDirectory()), files.filter(f => !fs.statSync(path + '/' + f).isDirectory()));
         files.map(file => {
-            if (regexp.test(path + '/' + file)) return false;
+            const filePath = resolve(path, file);
+            if (regexp.test(filePath)) return false;
 
-            if (fs.statSync(path + '/' + file).isDirectory()) {
+            if (fs.statSync(filePath).isDirectory()) {
                 let item;
                 if (tmp['child']) {
-                    item = {name: file, child: [], open: false};
+                    item = {name: file, child: [], open: false, path: filePath};
                     tmp['child'].push(item);
                 }
                 else {
-                    item = {name: file, child: []};
+                    item = {name: file, child: [], path: filePath};
                     nodes.push(item);
                 }
 
@@ -40,11 +44,11 @@ export const getFileList = (path, filterDir = FILTER_DIR) => {
             }
             else {
                 if (tmp['child']) {
-                    let item = {name: file};
+                    let item = {name: file, path: filePath};
                     tmp['child'].push(item);
                 }
                 else {
-                    let item = {name: file};
+                    let item = {name: file, path: filePath};
                     nodes.push(item);
                 }
             }
