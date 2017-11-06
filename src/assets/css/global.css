@@ -8,15 +8,11 @@ body{
     margin:auto;
     overflow: hidden;
 }
-:global .g-container{
+:global #app{
     height:100%;
-    position: relative;
 }
 :global .g-main{
     height: calc(100% - 66px);
     margin-top: var(--topbar-height);
     position: relative;
-}
-:global #app{
-    height:100%;
 }

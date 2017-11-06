@@ -27,15 +27,13 @@ class App extends React.Component {
 
     render() {
         let {left} = this.state;
-        return (
-            <div className="g-container">
-                <TopBar/>
-                <div className="g-main">
-                    <Sidebar left={left}/>
-                    <Editor left={left}/>
-                </div>
+        return [
+            <TopBar/>,
+            <div className="g-main">
+                <Sidebar left={left}/>
+                <Editor left={left}/>
             </div>
-        )
+        ]
     }
 }
 
