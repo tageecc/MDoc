@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import fs from 'fs';
-import {Editor, EditorState,DefaultDraftBlockRenderMap} from 'draft-js';
+import Draft,{EditorState,DefaultDraftBlockRenderMap} from 'draft-js';
 import Immutable from 'immutable';
 import styles from './style.css'
 import AppBar from 'material-ui/AppBar';
@@ -9,7 +9,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import {github} from 'react-syntax-highlighter/dist/styles';
 
 
-export default class Main extends Component {
+export default class Editor extends Component {
 
     // editorState: createEditorStateWithText(text),
     state = {editorState: EditorState.createEmpty()};
@@ -20,10 +20,17 @@ export default class Main extends Component {
 
     render() {
         const {left} = this.props;
+        const {editorState} = this.state;
+        const selectionState = editorState.getSelection();
 
+        var key = selectionState.getAnchorKey();
+        var offset = selectionState.getAnchorOffset();
+        console.log({
+            key,offset
+        });
         return (
             <div className={styles.container} onClick={this.focus} style={{left, width: 'calc(100% - ' + left + 'px)'}}>
-                <Editor
+                <Draft.Editor
                     ref={v => this.editor = v}
                     onChange={this.onChange}
                     editorState={this.state.editorState}

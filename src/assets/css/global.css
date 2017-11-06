@@ -9,10 +9,8 @@ body{
     overflow: hidden;
 }
 :global #app{
+    display: flex;
     height:100%;
-}
-:global .g-main{
-    height: calc(100% - 66px);
-    margin-top: var(--topbar-height);
-    position: relative;
+    padding-top: 66px;
+    box-sizing: border-box;
 }

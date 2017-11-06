@@ -29,10 +29,8 @@ class App extends React.Component {
         let {left} = this.state;
         return [
             <TopBar/>,
-            <div className="g-main">
-                <Sidebar left={left}/>
-                <Editor left={left}/>
-            </div>
+            <Sidebar left={left}/>,
+            <Editor left={left}/>
         ]
     }
 }
