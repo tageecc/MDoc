@@ -1,58 +1,33 @@
 import React, {Component} from 'react';
 import fs from 'fs';
+import {Editor, EditorState,DefaultDraftBlockRenderMap} from 'draft-js';
+import Immutable from 'immutable';
 import styles from './style.css'
 import AppBar from 'material-ui/AppBar';
 import Tabs, {Tab} from 'material-ui/Tabs';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/dist/styles';
-export default class Editor extends Component {
+import {github} from 'react-syntax-highlighter/dist/styles';
 
-    state = {
-        value: 0,
-        files:[
-            {
-                name:'123',
-                path:process.cwd()+'/src/assets/css/global.css'
-            },
-            {
-                name:'123',
-                path:''
-            },
-            {
-                name:'123',
-                path:''
-            },
-            {
-                name:'123',
-                path:''
-            }
-        ]
-    };
-    handleChange = (event, value) => {
-        this.setState({value});
-    };
-    getFileContent(path){
-        return fs.readFileSync(path,'utf-8');
-    }
+
+export default class Main extends Component {
+
+    // editorState: createEditorStateWithText(text),
+    state = {editorState: EditorState.createEmpty()};
+
+    focus = () => this.editor.focus();
+
+    onChange = (editorState) => this.setState({editorState});
+
     render() {
         const {left} = this.props;
-        const {value,files} = this.state;
 
         return (
-            <div className={styles.container} style={{left,width:'calc(100% - '+left+'px)'}}>
-                <div id='borderLeft' className={styles['border-ctl']}/>
-                <AppBar position="static" color="default">
-                    <Tabs
-                        scrollable
-                        value={value}
-                        scrollButtons="off"
-                        className={styles.tabs}
-                        onChange={this.handleChange}
-                    >
-                        {files.map((file,index)=><Tab key={index} label={<div>{file.name}</div>}/>)}
-                    </Tabs>
-                </AppBar>
-                {files.map((file,index)=>value===index&&<div key={index} className={styles['tabs-content']} contentEditable="true"><SyntaxHighlighter language='javascript' style={github}>{this.getFileContent(file.path)}</SyntaxHighlighter></div>)}
+            <div className={styles.container} onClick={this.focus} style={{left, width: 'calc(100% - ' + left + 'px)'}}>
+                <Editor
+                    ref={v => this.editor = v}
+                    onChange={this.onChange}
+                    editorState={this.state.editorState}
+                />
             </div>
         )
     }

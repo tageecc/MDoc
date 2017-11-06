@@ -1,10 +1,19 @@
 .container {
+    padding:10px;
+    box-sizing: border-box;
     height: 100%;
     background: #fff;
     width:100%;
     position: absolute;
     top: 0;
     left:100px;
+    overflow: auto;
+    cursor: text;
+    min-height: 100%;
+}
+.container .public-DraftEditor-content {
+    height: 100%;
+    overflow: auto;
 }
 .border-ctl{
     position: absolute;

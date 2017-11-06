@@ -20,7 +20,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        document.getElementById('borderLeft').addEventListener('mousedown', () => this.setState({canDrag: true}));
+        // document.getElementById('borderLeft').addEventListener('mousedown', () => this.setState({canDrag: true}));
         document.addEventListener('mouseup', () => this.setState({canDrag: false}));
         document.addEventListener('mousemove', this.onBorderDrop.bind(this));
     }
